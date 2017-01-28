@@ -6,6 +6,31 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
+        
+        <div class="city">
+          <ul class="nav navbar-nav">
+            <li style="font-size: 0.8em; margin-top: 1.5em;">全国</li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:0.8em; margin: auto;">[切换城市]<span class="caret"></span></a>
+              <ul class="dropdown-menu" id="bootstrap-overide-1">
+                <ul class="list-inline" style="30px;">
+                  <li><%= link_to("全国",jobs_path, class: "bootstrap-overide-2") %></li>
+                  <li><%= link_to("北京",beijing_index_path, class: "bootstrap-overide-2") %>
+                    <li><%= link_to("上海",shanghai_index_path, class: "bootstrap-overide-2") %>
+                    <li><%= link_to("深圳",shenzhen_index_path, class: "bootstrap-overide-2") %>
+                    <li><%= link_to("广州",guangzhou_index_path, class: "bootstrap-overide-2") %>
+                   
+                  </li>
+                </ul>
+              </ul>
+
+            </li>
+          </ul>
+        </div>
+
+
+
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -55,10 +80,9 @@
 </div>
 
 
+
+
 <!--%%%%%%%%%%%%弹窗%%%%%%%%%%%%%-->
-
-
-
  <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="loginmodal-container">

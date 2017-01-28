@@ -1,26 +1,25 @@
-class JobsController < ApplicationController
+class BeijingController < ApplicationController
+	
 	before_action :authenticate_user!, only:[:new,:cerate,:update,:edit,:destroy]
 	
 	def show
 		@job = Job.find(params[:id])
 		if @job.is_hidden
-			
 			flash[:warning] = "This job already archieved"
 			redirect_to root_path
 		end
 	end
 
-	def index
-		@jobs = case params[:order]
-				when 'by_lower_bound'
-					Job.published.order("wage_lower_bound DESC")
-				when 'by_upper_bound'
-					Job.published.order("wage_upper_bound DESC")
-				else
-					Job.published.recent
-				end
-					
-	end
+  def index
+    @jobs = case params[:order]
+      when 'by_lower_bound'
+        Job.where(:address => "北京").published.order('wage_lower_bound DESC').paginate(:page => params[:page], :per_page => 10)
+      when 'by_upper_bound'
+        Job.where(:address => "北京").published.order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 10)
+      else
+        Job.where(:address => "北京").published.recent.paginate(:page => params[:page], :per_page => 10)
+      end
+  end
 
 	def new
 		@job = Job.new
@@ -61,3 +60,5 @@ class JobsController < ApplicationController
 			:wage_lower_bound,:contact_email,:is_hidden)
 	end
 end
+
+
