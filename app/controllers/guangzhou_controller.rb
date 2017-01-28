@@ -1,5 +1,4 @@
-class ShanghaiController < ApplicationController
-	
+class GuangzhouController < ApplicationController
 	before_action :authenticate_user!, only:[:new,:cerate,:update,:edit,:destroy]
 	
 	def show
@@ -13,11 +12,11 @@ class ShanghaiController < ApplicationController
   def index
     @jobs = case params[:order]
       when 'by_lower_bound'
-        Job.where(:address => "上海").published.order('wage_lower_bound DESC').paginate(:page => params[:page], :per_page => 15)
+        Job.where(:address => "广州").published.order('wage_lower_bound DESC').paginate(:page => params[:page], :per_page => 10)
       when 'by_upper_bound'
-        Job.where(:address => "上海").published.order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 15)
+        Job.where(:address => "广州").published.order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 10)
       else
-        Job.where(:address => "上海").published.recent.paginate(:page => params[:page], :per_page => 15)
+        Job.where(:address => "广州").published.recent.paginate(:page => params[:page], :per_page => 10)
       end
   end
 
@@ -60,5 +59,3 @@ class ShanghaiController < ApplicationController
 			:wage_lower_bound,:contact_email,:is_hidden)
 	end
 end
-
-
